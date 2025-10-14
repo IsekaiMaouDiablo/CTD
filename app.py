@@ -25,7 +25,7 @@ PRODUCT_CATALOG = {
     "switches": [
         {
             "name": "Gateron Oil King", 
-            "price": 45, 
+            "price": 7.80, 
             "desc": "Premium linear switches with factory lubrication", 
             "stock": "In Stock", 
             "unit": 10,
@@ -43,7 +43,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Cherry MX Red", 
-            "price": 35, 
+            "price": 5.50, 
             "desc": "Classic linear switches, smooth and reliable", 
             "stock": "In Stock", 
             "unit": 10,
@@ -61,7 +61,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Gateron Yellow", 
-            "price": 25, 
+            "price": 5, 
             "desc": "Budget-friendly linear switches", 
             "stock": "In Stock", 
             "unit": 10,
@@ -79,7 +79,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Holy Panda", 
-            "price": 65, 
+            "price": 10.30, 
             "desc": "Tactile switches with satisfying bump", 
             "stock": "Limited", 
             "unit": 10,
@@ -97,7 +97,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Glorious Panda", 
-            "price": 55, 
+            "price": 8.50, 
             "desc": "Tactile switches, Holy Panda alternative", 
             "stock": "In Stock", 
             "unit": 10,
@@ -115,7 +115,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Cherry MX Brown", 
-            "price": 40, 
+            "price": 5.50, 
             "desc": "Popular tactile switches", 
             "stock": "In Stock", 
             "unit": 10,
@@ -133,7 +133,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Kailh Box White", 
-            "price": 30, 
+            "price": 3.50, 
             "desc": "Clicky switches with crisp sound", 
             "stock": "In Stock", 
             "unit": 10,
@@ -151,7 +151,7 @@ PRODUCT_CATALOG = {
         },
         {
             "name": "Kailh Box Jade", 
-            "price": 35, 
+            "price": 5.50, 
             "desc": "Heavy clicky switches", 
             "stock": "Limited", 
             "unit": 10,
@@ -184,11 +184,11 @@ PRODUCT_CATALOG = {
         {"name": "Akko ASA", "price": 49, "desc": "Budget-friendly ASA profile", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=300&fit=crop"},
     ],
     "accessories": [
-        {"name": "Lube Station Kit", "price": 30, "desc": "Professional switch lubing tools", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
+        {"name": "Lube Station Kit", "price": 15, "desc": "Professional switch lubing tools", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
         {"name": "Krytox 205g0", "price": 15, "desc": "Premium switch lubricant, 5ml", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1585839086076-9d991d8f2519?w=400&h=300&fit=crop"},
-        {"name": "Switch Puller", "price": 8, "desc": "Aluminum switch removal tool", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
-        {"name": "Keycap Puller", "price": 6, "desc": "Wire keycap removal tool", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
-        {"name": "Coiled Cable", "price": 45, "desc": "Custom aviator USB-C cable", "stock": "Limited", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"},
+        {"name": "Switch Puller", "price": 5, "desc": "Aluminum switch removal tool", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
+        {"name": "Keycap Puller", "price": 5, "desc": "Wire keycap removal tool", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
+        {"name": "Coiled Cable", "price": 20, "desc": "Custom aviator USB-C cable", "stock": "Limited", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"},
         {"name": "Desk Mat", "price": 25, "desc": "Extended gaming mouse pad", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop"},
         {"name": "Switch Films", "price": 12, "desc": "Reduce wobble, 120 pack", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=400&h=300&fit=crop"},
         {"name": "Durock Stabilizers", "price": 22, "desc": "Screw-in stabilizers, set", "stock": "In Stock", "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop"},
