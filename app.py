@@ -195,47 +195,84 @@ PRODUCT_CATALOG = {
     ]
 }
 
-# Custom Keyboard Builder Options
-CUSTOM_KB_OPTIONS = {
-    "cases": [
-        {"name": "Aluminum 60%", "price": 120, "desc": "CNC machined aluminum, 60% layout", "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop"},
-        {"name": "Aluminum 65%", "price": 140, "desc": "CNC machined aluminum, 65% layout", "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400&h=300&fit=crop"},
-        {"name": "Aluminum 75%", "price": 160, "desc": "CNC machined aluminum, 75% layout", "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&h=300&fit=crop"},
-        {"name": "Acrylic 60%", "price": 80, "desc": "Frosted acrylic, 60% layout", "image": "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&h=300&fit=crop"},
-        {"name": "Acrylic 65%", "price": 90, "desc": "Frosted acrylic, 65% layout", "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400&h=300&fit=crop"},
-        {"name": "Wooden 60%", "price": 150, "desc": "Walnut wood case, 60% layout", "image": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&h=300&fit=crop"},
-        {"name": "Wooden 65%", "price": 170, "desc": "Walnut wood case, 65% layout", "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=300&fit=crop"},
-    ],
-    "switches": [
-        {"name": "Gateron Oil King (x70)", "price": 45, "desc": "Linear, factory lubed", "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400&h=300&fit=crop"},
-        {"name": "Cherry MX Red (x70)", "price": 35, "desc": "Linear, classic feel", "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop"},
-        {"name": "Gateron Yellow (x70)", "price": 25, "desc": "Linear, budget option", "image": "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&h=300&fit=crop"},
-        {"name": "Holy Panda (x70)", "price": 65, "desc": "Tactile, premium feel", "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&h=300&fit=crop"},
-        {"name": "Cherry MX Brown (x70)", "price": 40, "desc": "Tactile, popular choice", "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400&h=300&fit=crop"},
-        {"name": "Kailh Box White (x70)", "price": 30, "desc": "Clicky, crisp sound", "image": "https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&h=300&fit=crop"},
-    ],
-    "stabilizers": [
-        {"name": "Durock V2", "price": 22, "desc": "Screw-in, premium stabilizers", "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop"},
-        {"name": "Cherry Clip-In", "price": 12, "desc": "PCB mount, reliable", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
-        {"name": "C3 Equalz", "price": 28, "desc": "Screw-in, gold-plated", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
-        {"name": "TX Stabilizers", "price": 35, "desc": "Premium, minimal rattle", "image": "https://images.unsplash.com/photo-1585839086076-9d991d8f2519?w=400&h=300&fit=crop"},
-    ],
-    "plates": [
-        {"name": "Brass Plate", "price": 40, "desc": "Heavy, deep sound", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
-        {"name": "Aluminum Plate", "price": 30, "desc": "Balanced sound and flex", "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop"},
-        {"name": "FR4 Plate", "price": 25, "desc": "Flexible, muted sound", "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=400&h=300&fit=crop"},
-        {"name": "Carbon Fiber", "price": 45, "desc": "Stiff, high-pitched sound", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
-        {"name": "Polycarbonate", "price": 35, "desc": "Flexible, bouncy feel", "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop"},
-    ],
-    "keycaps": [
-        {"name": "GMK Olivia++", "price": 139, "desc": "ABS, pink/cream theme", "image": "https://images.unsplash.com/photo-1607332758123-e3e0b0b6ee30?w=400&h=300&fit=crop"},
-        {"name": "PBT Islander", "price": 89, "desc": "PBT, tropical colors", "image": "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?w=400&h=300&fit=crop"},
-        {"name": "ePBT Simple JA", "price": 79, "desc": "PBT, minimalist Japanese", "image": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&h=300&fit=crop"},
-        {"name": "NicePBT Sugarplum", "price": 69, "desc": "PBT, purple/cream", "image": "https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&h=300&fit=crop"},
-        {"name": "Drop MT3", "price": 99, "desc": "High profile, sculpted", "image": "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=400&h=300&fit=crop"},
-        {"name": "Akko ASA", "price": 49, "desc": "Budget ASA profile", "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=300&fit=crop"},
-    ]
-}
+
+# ==========================
+# 🔧 HELPER FUNCTIONS
+# ==========================
+def get_custom_builder_options():
+    """
+    Generates custom builder options dynamically from PRODUCT_CATALOG.
+    Switches and keycaps prices are derived from the catalog.
+    Cases, stabilizers, and plates are unique to custom builds.
+    """
+    
+    # Generate switches for custom builder (70 pieces = 7 units of 10)
+    custom_switches = []
+    switch_mapping = {
+        "Gateron Oil King": "Linear, factory lubed",
+        "Cherry MX Red": "Linear, classic feel",
+        "Gateron Yellow": "Linear, budget option",
+        "Holy Panda": "Tactile, premium feel",
+        "Cherry MX Brown": "Tactile, popular choice",
+        "Kailh Box White": "Clicky, crisp sound",
+    }
+    
+    for switch in PRODUCT_CATALOG['switches']:
+        if switch['name'] in switch_mapping:
+            custom_switches.append({
+                "name": f"{switch['name']} (x70)",
+                "price": round(switch['price'] * 7, 2),  # 70 switches = 7 units of 10
+                "desc": switch_mapping[switch['name']],
+                "image": switch['image']
+            })
+    
+    # Generate keycaps for custom builder (directly from catalog)
+    custom_keycaps = []
+    keycap_mapping = {
+        "GMK Olivia++": "ABS, pink/cream theme",
+        "PBT Islander": "PBT, tropical colors",
+        "ePBT Simple JA": "PBT, minimalist Japanese",
+        "NicePBT Sugarplum": "PBT, purple/cream",
+        "Drop + Matt3o MT3": "High profile, sculpted",
+        "Akko ASA": "Budget ASA profile",
+    }
+    
+    for keycap in PRODUCT_CATALOG['keycaps']:
+        if keycap['name'] in keycap_mapping:
+            custom_keycaps.append({
+                "name": keycap['name'],
+                "price": keycap['price'],
+                "desc": keycap_mapping[keycap['name']],
+                "image": keycap['image']
+            })
+    
+    # Unique custom builder options (not in main catalog)
+    return {
+        "cases": [
+            {"name": "Aluminum 60%", "price": 120, "desc": "CNC machined aluminum, 60% layout", "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop"},
+            {"name": "Aluminum 65%", "price": 140, "desc": "CNC machined aluminum, 65% layout", "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400&h=300&fit=crop"},
+            {"name": "Aluminum 75%", "price": 160, "desc": "CNC machined aluminum, 75% layout", "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&h=300&fit=crop"},
+            {"name": "Acrylic 60%", "price": 80, "desc": "Frosted acrylic, 60% layout", "image": "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&h=300&fit=crop"},
+            {"name": "Acrylic 65%", "price": 90, "desc": "Frosted acrylic, 65% layout", "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400&h=300&fit=crop"},
+            {"name": "Wooden 60%", "price": 150, "desc": "Walnut wood case, 60% layout", "image": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&h=300&fit=crop"},
+            {"name": "Wooden 65%", "price": 170, "desc": "Walnut wood case, 65% layout", "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=300&fit=crop"},
+        ],
+        "switches": custom_switches,
+        "stabilizers": [
+            {"name": "Durock V2", "price": 22, "desc": "Screw-in, premium stabilizers", "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop"},
+            {"name": "Cherry Clip-In", "price": 12, "desc": "PCB mount, reliable", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
+            {"name": "C3 Equalz", "price": 28, "desc": "Screw-in, gold-plated", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
+            {"name": "TX Stabilizers", "price": 35, "desc": "Premium, minimal rattle", "image": "https://images.unsplash.com/photo-1585839086076-9d991d8f2519?w=400&h=300&fit=crop"},
+        ],
+        "plates": [
+            {"name": "Brass Plate", "price": 40, "desc": "Heavy, deep sound", "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop"},
+            {"name": "Aluminum Plate", "price": 30, "desc": "Balanced sound and flex", "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop"},
+            {"name": "FR4 Plate", "price": 25, "desc": "Flexible, muted sound", "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=400&h=300&fit=crop"},
+            {"name": "Carbon Fiber", "price": 45, "desc": "Stiff, high-pitched sound", "image": "https://images.unsplash.com/photo-1572297794879-e8c6e8e0c7e2?w=400&h=300&fit=crop"},
+            {"name": "Polycarbonate", "price": 35, "desc": "Flexible, bouncy feel", "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop"},
+        ],
+        "keycaps": custom_keycaps
+    }
 
 
 # ==========================
@@ -642,6 +679,9 @@ def shop_page():
 def custom_builder_page():
     st.markdown("### 🔧 Custom Keyboard Builder")
     st.write("Build your dream keyboard by selecting each component below.")
+    
+    # Get dynamically generated options
+    CUSTOM_KB_OPTIONS = get_custom_builder_options()
     
     col_main, col_summary = st.columns([2, 1])
     
@@ -1096,3 +1136,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
