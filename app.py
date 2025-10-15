@@ -221,7 +221,7 @@ def get_custom_builder_options():
         if switch['name'] in switch_mapping:
             custom_switches.append({
                 "name": f"{switch['name']} (x70)",
-                "price": round(switch['price'] * 7, 2),  # 70 switches = 7 units of 10
+                "price": round(switch['price'] * 7, 3),  # 70 switches = 7 units of 10
                 "desc": switch_mapping[switch['name']],
                 "image": switch['image']
             })
