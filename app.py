@@ -346,59 +346,6 @@ st.markdown("""
         margin-top: 0.5rem;
     }
     
-    .product-card {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-        border: 1px solid #e0e0e0;
-    }
-    
-    .product-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-    
-    .switch-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-    }
-    
-    .specs-box {
-        background: #f8f9fa;
-        border-left: 4px solid #667eea;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 4px;
-        font-size: 0.9rem;
-    }
-    
-    .spec-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.3rem 0;
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .spec-row:last-child {
-        border-bottom: none;
-    }
-    
-    .spec-label {
-        font-weight: 600;
-        color: #555;
-    }
-    
-    .spec-value {
-        color: #667eea;
-        font-weight: 500;
-    }
-    
     .badge {
         display: inline-block;
         padding: 0.35rem 0.75rem;
@@ -424,44 +371,20 @@ st.markdown("""
         color: white;
     }
     
-    .card-container {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        margin: 1rem 0;
-        border: 1px solid #e0e0e0;
-    }
-    
-    .build-summary {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 1rem;
-        border: 1px solid #e0e0e0;
-    }
-    
     div[data-testid="stMetricValue"] {
         font-size: 2rem;
         color: #667eea;
     }
     
     .stButton > button {
-        width: 100%;
         border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        background: white;
-        padding: 0.75rem;
         font-weight: 600;
         transition: all 0.2s;
     }
     
-    .stButton > button:hover {
-        background: #667eea;
-        color: white;
-        border-color: #667eea;
+    /* Add spacing between containers */
+    div[data-testid="stVerticalBlock"] > div {
+        margin-bottom: 1rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -585,16 +508,15 @@ def home_page():
     st.markdown("---")
     
     st.markdown("### 🔧 Build Your Dream Keyboard")
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
     col1, col2 = st.columns([3, 1])
     with col1:
         st.markdown("#### Custom Keyboard Builder")
         st.write("Create your perfect keyboard from scratch. Choose your case, switches, plate, stabilizers, and keycaps!")
     with col2:
+        st.write("")  # Spacer
         if st.button("Start Building →", key="start_builder", use_container_width=True):
             st.session_state.page = "Custom Builder"
             st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ==========================
@@ -645,7 +567,7 @@ def shop_page():
                     
                     # Display image
                     if 'image' in item:
-                        st.markdown(f'<img src="{item["image"]}" class="switch-image" alt="{item["name"]}">', unsafe_allow_html=True)
+                        st.image(item['image'], use_container_width=True)
                     
                     st.markdown(f"### {item['name']}")
                     st.write(item['desc'])
@@ -723,206 +645,192 @@ def custom_builder_page():
     with col_main:
         # Case Selection
         st.markdown("#### 1️⃣ Choose Your Case")
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
+        with st.container():
+            case_options = [f"{c['name']} - ${c['price']}" for c in CUSTOM_KB_OPTIONS['cases']]
+            case_names = [c['name'] for c in CUSTOM_KB_OPTIONS['cases']]
+            
+            default_case_idx = 0
+            if st.session_state.custom_build['case']:
+                try:
+                    default_case_idx = case_names.index(st.session_state.custom_build['case'])
+                except ValueError:
+                    pass
+            
+            selected_case_idx = st.radio(
+                "Select a case:",
+                range(len(case_options)),
+                format_func=lambda x: case_options[x],
+                index=default_case_idx,
+                key="case_selector"
+            )
+            st.session_state.custom_build['case'] = case_names[selected_case_idx]
+            st.caption(CUSTOM_KB_OPTIONS['cases'][selected_case_idx]['desc'])
         
-        case_options = [f"{c['name']} - ${c['price']}" for c in CUSTOM_KB_OPTIONS['cases']]
-        case_names = [c['name'] for c in CUSTOM_KB_OPTIONS['cases']]
-        
-        default_case_idx = 0
-        if st.session_state.custom_build['case']:
-            try:
-                default_case_idx = case_names.index(st.session_state.custom_build['case'])
-            except ValueError:
-                pass
-        
-        selected_case_idx = st.radio(
-            "Select a case:",
-            range(len(case_options)),
-            format_func=lambda x: case_options[x],
-            index=default_case_idx,
-            key="case_selector"
-        )
-        st.session_state.custom_build['case'] = case_names[selected_case_idx]
-        st.caption(CUSTOM_KB_OPTIONS['cases'][selected_case_idx]['desc'])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
         
         # Switches Selection
         st.markdown("#### 2️⃣ Choose Your Switches")
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
+        with st.container():
+            switch_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['switches']]
+            switch_names = [s['name'] for s in CUSTOM_KB_OPTIONS['switches']]
+            
+            default_switch_idx = 0
+            if st.session_state.custom_build['switches']:
+                try:
+                    default_switch_idx = switch_names.index(st.session_state.custom_build['switches'])
+                except ValueError:
+                    pass
+            
+            selected_switch_idx = st.radio(
+                "Select switches:",
+                range(len(switch_options)),
+                format_func=lambda x: switch_options[x],
+                index=default_switch_idx,
+                key="switches_selector"
+            )
+            st.session_state.custom_build['switches'] = switch_names[selected_switch_idx]
+            st.caption(CUSTOM_KB_OPTIONS['switches'][selected_switch_idx]['desc'])
         
-        switch_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['switches']]
-        switch_names = [s['name'] for s in CUSTOM_KB_OPTIONS['switches']]
-        
-        default_switch_idx = 0
-        if st.session_state.custom_build['switches']:
-            try:
-                default_switch_idx = switch_names.index(st.session_state.custom_build['switches'])
-            except ValueError:
-                pass
-        
-        selected_switch_idx = st.radio(
-            "Select switches:",
-            range(len(switch_options)),
-            format_func=lambda x: switch_options[x],
-            index=default_switch_idx,
-            key="switches_selector"
-        )
-        st.session_state.custom_build['switches'] = switch_names[selected_switch_idx]
-        st.caption(CUSTOM_KB_OPTIONS['switches'][selected_switch_idx]['desc'])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
         
         # Stabilizers Selection
         st.markdown("#### 3️⃣ Choose Your Stabilizers")
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
+        with st.container():
+            stab_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['stabilizers']]
+            stab_names = [s['name'] for s in CUSTOM_KB_OPTIONS['stabilizers']]
+            
+            default_stab_idx = 0
+            if st.session_state.custom_build['stabilizers']:
+                try:
+                    default_stab_idx = stab_names.index(st.session_state.custom_build['stabilizers'])
+                except ValueError:
+                    pass
+            
+            selected_stab_idx = st.radio(
+                "Select stabilizers:",
+                range(len(stab_options)),
+                format_func=lambda x: stab_options[x],
+                index=default_stab_idx,
+                key="stabs_selector"
+            )
+            st.session_state.custom_build['stabilizers'] = stab_names[selected_stab_idx]
+            st.caption(CUSTOM_KB_OPTIONS['stabilizers'][selected_stab_idx]['desc'])
         
-        stab_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['stabilizers']]
-        stab_names = [s['name'] for s in CUSTOM_KB_OPTIONS['stabilizers']]
-        
-        default_stab_idx = 0
-        if st.session_state.custom_build['stabilizers']:
-            try:
-                default_stab_idx = stab_names.index(st.session_state.custom_build['stabilizers'])
-            except ValueError:
-                pass
-        
-        selected_stab_idx = st.radio(
-            "Select stabilizers:",
-            range(len(stab_options)),
-            format_func=lambda x: stab_options[x],
-            index=default_stab_idx,
-            key="stabs_selector"
-        )
-        st.session_state.custom_build['stabilizers'] = stab_names[selected_stab_idx]
-        st.caption(CUSTOM_KB_OPTIONS['stabilizers'][selected_stab_idx]['desc'])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
         
         # Plate Selection
         st.markdown("#### 4️⃣ Choose Your Plate Material")
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
+        with st.container():
+            plate_options = [f"{p['name']} - ${p['price']}" for p in CUSTOM_KB_OPTIONS['plates']]
+            plate_names = [p['name'] for p in CUSTOM_KB_OPTIONS['plates']]
+            
+            default_plate_idx = 0
+            if st.session_state.custom_build['plate']:
+                try:
+                    default_plate_idx = plate_names.index(st.session_state.custom_build['plate'])
+                except ValueError:
+                    pass
+            
+            selected_plate_idx = st.radio(
+                "Select plate:",
+                range(len(plate_options)),
+                format_func=lambda x: plate_options[x],
+                index=default_plate_idx,
+                key="plate_selector"
+            )
+            st.session_state.custom_build['plate'] = plate_names[selected_plate_idx]
+            st.caption(CUSTOM_KB_OPTIONS['plates'][selected_plate_idx]['desc'])
         
-        plate_options = [f"{p['name']} - ${p['price']}" for p in CUSTOM_KB_OPTIONS['plates']]
-        plate_names = [p['name'] for p in CUSTOM_KB_OPTIONS['plates']]
-        
-        default_plate_idx = 0
-        if st.session_state.custom_build['plate']:
-            try:
-                default_plate_idx = plate_names.index(st.session_state.custom_build['plate'])
-            except ValueError:
-                pass
-        
-        selected_plate_idx = st.radio(
-            "Select plate:",
-            range(len(plate_options)),
-            format_func=lambda x: plate_options[x],
-            index=default_plate_idx,
-            key="plate_selector"
-        )
-        st.session_state.custom_build['plate'] = plate_names[selected_plate_idx]
-        st.caption(CUSTOM_KB_OPTIONS['plates'][selected_plate_idx]['desc'])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
         
         # Keycaps Selection
         st.markdown("#### 5️⃣ Choose Your Keycaps")
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
-        
-        keycap_options = [f"{k['name']} - ${k['price']}" for k in CUSTOM_KB_OPTIONS['keycaps']]
-        keycap_names = [k['name'] for k in CUSTOM_KB_OPTIONS['keycaps']]
-        
-        default_keycap_idx = 0
-        if st.session_state.custom_build['keycaps']:
-            try:
-                default_keycap_idx = keycap_names.index(st.session_state.custom_build['keycaps'])
-            except ValueError:
-                pass
-        
-        selected_keycap_idx = st.radio(
-            "Select keycaps:",
-            range(len(keycap_options)),
-            format_func=lambda x: keycap_options[x],
-            index=default_keycap_idx,
-            key="keycaps_selector"
-        )
-        st.session_state.custom_build['keycaps'] = keycap_names[selected_keycap_idx]
-        st.caption(CUSTOM_KB_OPTIONS['keycaps'][selected_keycap_idx]['desc'])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container():
+            keycap_options = [f"{k['name']} - ${k['price']}" for k in CUSTOM_KB_OPTIONS['keycaps']]
+            keycap_names = [k['name'] for k in CUSTOM_KB_OPTIONS['keycaps']]
+            
+            default_keycap_idx = 0
+            if st.session_state.custom_build['keycaps']:
+                try:
+                    default_keycap_idx = keycap_names.index(st.session_state.custom_build['keycaps'])
+                except ValueError:
+                    pass
+            
+            selected_keycap_idx = st.radio(
+                "Select keycaps:",
+                range(len(keycap_options)),
+                format_func=lambda x: keycap_options[x],
+                index=default_keycap_idx,
+                key="keycaps_selector"
+            )
+            st.session_state.custom_build['keycaps'] = keycap_names[selected_keycap_idx]
+            st.caption(CUSTOM_KB_OPTIONS['keycaps'][selected_keycap_idx]['desc'])
     
     with col_summary:
         st.markdown("### 📦 Build Summary")
         
-        st.markdown('<div class="build-summary">', unsafe_allow_html=True)
-        
-        # Calculate total
-        total = 0
-        
-        st.markdown("#### Your Configuration")
-        
-        if st.session_state.custom_build['case']:
-            for c in CUSTOM_KB_OPTIONS['cases']:
-                if c['name'] == st.session_state.custom_build['case']:
-                    st.write(f"**Case:** {c['name']}")
-                    st.caption(f"${c['price']}")
-                    total += c['price']
-        
-        if st.session_state.custom_build['switches']:
-            for s in CUSTOM_KB_OPTIONS['switches']:
-                if s['name'] == st.session_state.custom_build['switches']:
-                    st.write(f"**Switches:** {s['name']}")
-                    st.caption(f"${s['price']}")
-                    total += s['price']
-        
-        if st.session_state.custom_build['stabilizers']:
-            for s in CUSTOM_KB_OPTIONS['stabilizers']:
-                if s['name'] == st.session_state.custom_build['stabilizers']:
-                    st.write(f"**Stabilizers:** {s['name']}")
-                    st.caption(f"${s['price']}")
-                    total += s['price']
-        
-        if st.session_state.custom_build['plate']:
-            for p in CUSTOM_KB_OPTIONS['plates']:
-                if p['name'] == st.session_state.custom_build['plate']:
-                    st.write(f"**Plate:** {p['name']}")
-                    st.caption(f"${p['price']}")
-                    total += p['price']
-        
-        if st.session_state.custom_build['keycaps']:
-            for k in CUSTOM_KB_OPTIONS['keycaps']:
-                if k['name'] == st.session_state.custom_build['keycaps']:
-                    st.write(f"**Keycaps:** {k['name']}")
-                    st.caption(f"${k['price']}")
-                    total += k['price']
-        
-        st.markdown("---")
-        st.markdown(f"### Total: ${total}")
-        
-        if st.button("🛒 Add to Cart", key="add_custom_build", use_container_width=True):
-            custom_item = {
-                "name": "Custom Keyboard Build",
-                "price": total,
-                "desc": "Custom built keyboard",
-                "category": "custom",
-                "components": {
-                    "case": st.session_state.custom_build['case'],
-                    "switches": st.session_state.custom_build['switches'],
-                    "stabilizers": st.session_state.custom_build['stabilizers'],
-                    "plate": st.session_state.custom_build['plate'],
-                    "keycaps": st.session_state.custom_build['keycaps']
+        with st.container():
+            # Calculate total
+            total = 0
+            
+            st.markdown("#### Your Configuration")
+            
+            if st.session_state.custom_build['case']:
+                for c in CUSTOM_KB_OPTIONS['cases']:
+                    if c['name'] == st.session_state.custom_build['case']:
+                        st.write(f"**Case:** {c['name']}")
+                        st.caption(f"${c['price']}")
+                        total += c['price']
+            
+            if st.session_state.custom_build['switches']:
+                for s in CUSTOM_KB_OPTIONS['switches']:
+                    if s['name'] == st.session_state.custom_build['switches']:
+                        st.write(f"**Switches:** {s['name']}")
+                        st.caption(f"${s['price']}")
+                        total += s['price']
+            
+            if st.session_state.custom_build['stabilizers']:
+                for s in CUSTOM_KB_OPTIONS['stabilizers']:
+                    if s['name'] == st.session_state.custom_build['stabilizers']:
+                        st.write(f"**Stabilizers:** {s['name']}")
+                        st.caption(f"${s['price']}")
+                        total += s['price']
+            
+            if st.session_state.custom_build['plate']:
+                for p in CUSTOM_KB_OPTIONS['plates']:
+                    if p['name'] == st.session_state.custom_build['plate']:
+                        st.write(f"**Plate:** {p['name']}")
+                        st.caption(f"${p['price']}")
+                        total += p['price']
+            
+            if st.session_state.custom_build['keycaps']:
+                for k in CUSTOM_KB_OPTIONS['keycaps']:
+                    if k['name'] == st.session_state.custom_build['keycaps']:
+                        st.write(f"**Keycaps:** {k['name']}")
+                        st.caption(f"${k['price']}")
+                        total += k['price']
+            
+            st.markdown("---")
+            st.markdown(f"### Total: ${total}")
+            
+            if st.button("🛒 Add to Cart", key="add_custom_build", use_container_width=True):
+                custom_item = {
+                    "name": "Custom Keyboard Build",
+                    "price": total,
+                    "desc": "Custom built keyboard",
+                    "category": "custom",
+                    "components": {
+                        "case": st.session_state.custom_build['case'],
+                        "switches": st.session_state.custom_build['switches'],
+                        "stabilizers": st.session_state.custom_build['stabilizers'],
+                        "plate": st.session_state.custom_build['plate'],
+                        "keycaps": st.session_state.custom_build['keycaps']
+                    }
                 }
-            }
-            st.session_state.cart.append(custom_item)
-            save_json(CART_FILE, st.session_state.cart)
-            st.success("✅ Custom build added to cart!")
-            st.rerun()
-        
-        st.markdown('</div>', unsafe_allow_html=True)
+                st.session_state.cart.append(custom_item)
+                save_json(CART_FILE, st.session_state.cart)
+                st.success("✅ Custom build added to cart!")
+                st.rerun()
 
 
 # ==========================
@@ -937,35 +845,35 @@ def cart_page():
         st.write(f"**{len(st.session_state.cart)} item(s) in cart**")
         
         for i, item in enumerate(st.session_state.cart):
-            st.markdown('<div class="card-container">', unsafe_allow_html=True)
-            col1, col2, col3 = st.columns([2, 1, 1])
-            
-            with col1:
-                display_name = item.get('display_name', item['name'])
-                st.markdown(f"**{display_name}**")
+            with st.container():
+                col1, col2, col3 = st.columns([2, 1, 1])
                 
-                if 'desc' in item:
-                    st.caption(item['desc'])
+                with col1:
+                    display_name = item.get('display_name', item['name'])
+                    st.markdown(f"**{display_name}**")
+                    
+                    if 'desc' in item:
+                        st.caption(item['desc'])
+                    
+                    if 'quantity' in item and item.get('category') == 'switches':
+                        st.caption(f"Quantity: {item['quantity']} unit(s) × 10 switches = {item.get('total_switches', 0)} switches")
+                    
+                    if 'components' in item:
+                        with st.expander("View Build Details"):
+                            for comp_type, comp_name in item['components'].items():
+                                st.write(f"• **{comp_type.title()}:** {comp_name}")
                 
-                if 'quantity' in item and item.get('category') == 'switches':
-                    st.caption(f"Quantity: {item['quantity']} unit(s) × 10 switches = {item.get('total_switches', 0)} switches")
+                with col2:
+                    price_to_display = item.get('total_price', item['price'])
+                    st.markdown(f"**${price_to_display}**")
                 
-                if 'components' in item:
-                    with st.expander("View Build Details"):
-                        for comp_type, comp_name in item['components'].items():
-                            st.write(f"• **{comp_type.title()}:** {comp_name}")
-            
-            with col2:
-                price_to_display = item.get('total_price', item['price'])
-                st.markdown(f"**${price_to_display}**")
-            
-            with col3:
-                if st.button("Remove ❌", key=f"remove_{i}", use_container_width=True):
-                    st.session_state.cart.pop(i)
-                    save_json(CART_FILE, st.session_state.cart)
-                    st.rerun()
-            
-            st.markdown('</div>', unsafe_allow_html=True)
+                with col3:
+                    if st.button("Remove ❌", key=f"remove_{i}", use_container_width=True):
+                        st.session_state.cart.pop(i)
+                        save_json(CART_FILE, st.session_state.cart)
+                        st.rerun()
+                
+                st.markdown("---")
         
         st.markdown("---")
         
@@ -1012,15 +920,14 @@ def checkout_page():
     
     total = sum(item.get("total_price", item["price"]) for item in st.session_state.cart)
     
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.markdown("#### 📦 Order Summary")
-    for item in st.session_state.cart:
-        display_name = item.get('display_name', item['name'])
-        price_display = item.get('total_price', item['price'])
-        st.write(f"• {display_name} - ${price_display}")
-    st.markdown("---")
-    st.markdown(f"### Total: ${total}")
-    st.markdown('</div>', unsafe_allow_html=True)
+    with st.container():
+        st.markdown("#### 📦 Order Summary")
+        for item in st.session_state.cart:
+            display_name = item.get('display_name', item['name'])
+            price_display = item.get('total_price', item['price'])
+            st.write(f"• {display_name} - ${price_display}")
+        st.markdown("---")
+        st.markdown(f"### Total: ${total}")
     
     st.markdown("---")
     
@@ -1073,15 +980,14 @@ def checkout_page():
 def about_page():
     st.markdown("### ℹ️ About Thockaholics")
     
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.write("""
-    We're a collective of mechanical keyboard enthusiasts obsessed with the **thock**. 
-    Every product we sell is hand-picked, tested, and community-approved.
-    
-    Founded in 2020, Thockaholics has grown from a small Discord community to a 
-    trusted source for premium mechanical keyboard components and accessories.
-    """)
-    st.markdown('</div>', unsafe_allow_html=True)
+    with st.container():
+        st.write("""
+        We're a collective of mechanical keyboard enthusiasts obsessed with the **thock**. 
+        Every product we sell is hand-picked, tested, and community-approved.
+        
+        Founded in 2020, Thockaholics has grown from a small Discord community to a 
+        trusted source for premium mechanical keyboard components and accessories.
+        """)
     
     st.markdown("---")
     
@@ -1136,22 +1042,19 @@ def contact_page():
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
-        st.markdown("#### 📧 Email")
-        st.write("support@thockaholics.com")
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### 📧 Email")
+            st.write("support@thockaholics.com")
     
     with col2:
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
-        st.markdown("#### 💬 Discord")
-        st.write("discord.gg/thockaholics")
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### 💬 Discord")
+            st.write("discord.gg/thockaholics")
     
     with col3:
-        st.markdown('<div class="card-container">', unsafe_allow_html=True)
-        st.markdown("#### 🕐 Hours")
-        st.write("Mon-Fri: 9AM - 6PM")
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### 🕐 Hours")
+            st.write("Mon-Fri: 9AM - 6PM EST")
 
 
 # ==========================
