@@ -927,7 +927,7 @@ def checkout_page():
             price_display = item.get('total_price', item['price'])
             st.write(f"• {display_name} - ${price_display}")
         st.markdown("---")
-        st.markdown(f"### Total: ${round(total,2)}")
+        st.markdown(f"### Total: ${total:.2f}")
     
     st.markdown("---")
     
