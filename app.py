@@ -1150,7 +1150,7 @@ def contact_page():
     with col3:
         st.markdown('<div class="card-container">', unsafe_allow_html=True)
         st.markdown("#### 🕐 Hours")
-        st.write("Mon-Fri: 9AM - 6PM EST")
+        st.write("Mon-Fri: 9AM - 6PM")
         st.markdown('</div>', unsafe_allow_html=True)
 
 
