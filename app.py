@@ -925,7 +925,7 @@ def checkout_page():
         for item in st.session_state.cart:
             display_name = item.get('display_name', item['name'])
             price_display = item.get('total_price', item['price'])
-            st.write(f"• {display_name} - ${price_display}")
+            st.write(f"• {display_name} - ${price_display:.2f}")
         st.markdown("---")
         st.markdown(f"### Total: ${total:.2f}")
     
