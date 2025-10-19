@@ -1054,7 +1054,7 @@ def contact_page():
     with col3:
         with st.container():
             st.markdown("#### 🕐 Hours")
-            st.write("Mon-Fri: 9AM - 6PM EST")
+            st.write("Mon-Fri: 9AM - 6PM")
 
 
 # ==========================
