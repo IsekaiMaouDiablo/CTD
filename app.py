@@ -586,9 +586,9 @@ def shop_page():
                     
                     # Show price with badges
                     if st.session_state.shop_category == "switches":
-                        price_text = f"${item['price']}/10 pcs"
+                        price_text = f"${item['price']:.2f}/10 pcs"
                     else:
-                        price_text = f"${item['price']}"
+                        price_text = f"${item['price']:.2f}"
                     
                     if item['stock'] == "In Stock":
                         st.markdown(f'<span class="badge badge-default">In Stock</span><span class="badge badge-secondary">{price_text}</span>', unsafe_allow_html=True)
@@ -608,7 +608,7 @@ def shop_page():
                         )
                         total_switches = quantity * 10
                         total_price = quantity * item['price']
-                        st.caption(f"Total: {total_switches} switches = ${total_price}")
+                        st.caption(f"Total: {total_switches} switches = ${total_price:.2f}")
                     else:
                         quantity = 1
                         total_price = item['price']
@@ -646,7 +646,7 @@ def custom_builder_page():
         # Case Selection
         st.markdown("#### 1️⃣ Choose Your Case")
         with st.container():
-            case_options = [f"{c['name']} - ${c['price']}" for c in CUSTOM_KB_OPTIONS['cases']]
+            case_options = [f"{c['name']} - ${c['price']:.2f}" for c in CUSTOM_KB_OPTIONS['cases']]
             case_names = [c['name'] for c in CUSTOM_KB_OPTIONS['cases']]
             
             default_case_idx = 0
@@ -671,7 +671,7 @@ def custom_builder_page():
         # Switches Selection
         st.markdown("#### 2️⃣ Choose Your Switches")
         with st.container():
-            switch_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['switches']]
+            switch_options = [f"{s['name']} - ${s['price']:.2f}" for s in CUSTOM_KB_OPTIONS['switches']]
             switch_names = [s['name'] for s in CUSTOM_KB_OPTIONS['switches']]
             
             default_switch_idx = 0
@@ -696,7 +696,7 @@ def custom_builder_page():
         # Stabilizers Selection
         st.markdown("#### 3️⃣ Choose Your Stabilizers")
         with st.container():
-            stab_options = [f"{s['name']} - ${s['price']}" for s in CUSTOM_KB_OPTIONS['stabilizers']]
+            stab_options = [f"{s['name']} - ${s['price']:.2f}" for s in CUSTOM_KB_OPTIONS['stabilizers']]
             stab_names = [s['name'] for s in CUSTOM_KB_OPTIONS['stabilizers']]
             
             default_stab_idx = 0
@@ -721,7 +721,7 @@ def custom_builder_page():
         # Plate Selection
         st.markdown("#### 4️⃣ Choose Your Plate Material")
         with st.container():
-            plate_options = [f"{p['name']} - ${p['price']}" for p in CUSTOM_KB_OPTIONS['plates']]
+            plate_options = [f"{p['name']} - ${p['price']:.2f}" for p in CUSTOM_KB_OPTIONS['plates']]
             plate_names = [p['name'] for p in CUSTOM_KB_OPTIONS['plates']]
             
             default_plate_idx = 0
@@ -746,7 +746,7 @@ def custom_builder_page():
         # Keycaps Selection
         st.markdown("#### 5️⃣ Choose Your Keycaps")
         with st.container():
-            keycap_options = [f"{k['name']} - ${k['price']}" for k in CUSTOM_KB_OPTIONS['keycaps']]
+            keycap_options = [f"{k['name']} - ${k['price']:.2f}" for k in CUSTOM_KB_OPTIONS['keycaps']]
             keycap_names = [k['name'] for k in CUSTOM_KB_OPTIONS['keycaps']]
             
             default_keycap_idx = 0
@@ -779,35 +779,35 @@ def custom_builder_page():
                 for c in CUSTOM_KB_OPTIONS['cases']:
                     if c['name'] == st.session_state.custom_build['case']:
                         st.write(f"**Case:** {c['name']}")
-                        st.caption(f"${c['price']}")
+                        st.caption(f"${c['price']:.2f}")
                         total += c['price']
             
             if st.session_state.custom_build['switches']:
                 for s in CUSTOM_KB_OPTIONS['switches']:
                     if s['name'] == st.session_state.custom_build['switches']:
                         st.write(f"**Switches:** {s['name']}")
-                        st.caption(f"${s['price']}")
+                        st.caption(f"${s['price']:.2f}")
                         total += s['price']
             
             if st.session_state.custom_build['stabilizers']:
                 for s in CUSTOM_KB_OPTIONS['stabilizers']:
                     if s['name'] == st.session_state.custom_build['stabilizers']:
                         st.write(f"**Stabilizers:** {s['name']}")
-                        st.caption(f"${s['price']}")
+                        st.caption(f"${s['price']:.2f}")
                         total += s['price']
             
             if st.session_state.custom_build['plate']:
                 for p in CUSTOM_KB_OPTIONS['plates']:
                     if p['name'] == st.session_state.custom_build['plate']:
                         st.write(f"**Plate:** {p['name']}")
-                        st.caption(f"${p['price']}")
+                        st.caption(f"${p['price']:.2f}")
                         total += p['price']
             
             if st.session_state.custom_build['keycaps']:
                 for k in CUSTOM_KB_OPTIONS['keycaps']:
                     if k['name'] == st.session_state.custom_build['keycaps']:
                         st.write(f"**Keycaps:** {k['name']}")
-                        st.caption(f"${k['price']}")
+                        st.caption(f"${k['price']:.2f}")
                         total += k['price']
             
             st.markdown("---")
@@ -865,7 +865,7 @@ def cart_page():
                 
                 with col2:
                     price_to_display = item.get('total_price', item['price'])
-                    st.markdown(f"**${price_to_display}**")
+                    st.markdown(f"**${price_to_display:.2f}**")
                 
                 with col3:
                     if st.button("Remove ❌", key=f"remove_{i}", use_container_width=True):
@@ -886,7 +886,7 @@ def cart_page():
                 st.rerun()
         
         with col2:
-            st.markdown(f"### Total: ${total}")
+            st.markdown(f"### Total: ${total:.2f}")
             if st.button("Proceed to Checkout 💳", key="checkout_btn", use_container_width=True):
                 st.session_state.page = "Checkout"
                 st.rerun()
